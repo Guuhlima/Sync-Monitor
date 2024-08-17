@@ -24,13 +24,13 @@ var (
 
 func main() {
 	var err error
-	primaryDB, err = sql.Open("mysql", "Gustavo:Gu71403302a@@tcp(192.168.15.109:3306)/db_rs")
+	primaryDB, err = sql.Open("mysql", "root:suaSenha@tcp(Seuipbancoprimario)/databasePrimaria")
 	if err != nil {
 		log.Fatalf("Erro ao abrir a conexão com o banco primário: %v", err)
 	}
 	defer primaryDB.Close()
 
-	secondaryDB, err = sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/db_rs_2")
+	secondaryDB, err = sql.Open("mysql", "root:suaSenha@tcp(Seuipbancosecundario)/databaseSecundaria")
 	if err != nil {
 		log.Fatalf("Erro ao abrir a conexão com o banco secundário: %v", err)
 	}
