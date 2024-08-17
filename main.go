@@ -75,7 +75,7 @@ func handleConnection(w http.ResponseWriter, r *http.Request) {
 
 		horaSaida, ok1 := data["hora_saida"].(string)
 		horaRetorno, ok2 := data["hora_retorno"].(string)
-		tipoDePausa, ok3 := data["tipo_de_pausa"].(float64) // JSON decodifica números como float64
+		tipoDePausa, ok3 := data["tipo_de_pausa"].(float64) 
 
 		if !ok1 || !ok2 || !ok3 {
 			log.Println("Campos 'hora_saida', 'hora_retorno' ou 'tipo_de_pausa' não encontrados ou formatos incorretos")
@@ -175,7 +175,7 @@ func syncBuffer(db *sql.DB) {
 
 			horaSaida, ok1 := data["hora_saida"].(string)
 			horaRetorno, ok2 := data["hora_retorno"].(string)
-			tipoDePausa, ok3 := data["tipo_de_pausa"].(float64) // JSON decodifica números como float64
+			tipoDePausa, ok3 := data["tipo_de_pausa"].(float64)
 
 			if !ok1 || !ok2 || !ok3 {
 				log.Println("Campos 'hora_saida', 'hora_retorno' ou 'tipo_de_pausa' não encontrados ou formatos incorretos no buffer")
