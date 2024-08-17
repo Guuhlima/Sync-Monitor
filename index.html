@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status do Banco de Dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #status {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="status">Conectando...</div>
+
+<script>
+    const statusElement = document.getElementById("status");
+    const ws = new WebSocket("ws://localhost:8080/ws");
+
+    ws.onmessage = function(event) {
+        statusElement.textContent = "Status do banco de dados: " + event.data;
+        statusElement.style.color = event.data === "Online" ? "green" : "red";
+    };
+
+    ws.onerror = function(error) {
+        statusElement.textContent = "Erro na conexão WebSocket.";
+        statusElement.style.color = "red";
+    };
+
+    ws.onclose = function() {
+        statusElement.textContent = "Conexão WebSocket fechada.";
+        statusElement.style.color = "red";
+    };
+</script>
+
+</body>
+</html>
